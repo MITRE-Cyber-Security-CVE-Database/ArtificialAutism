@@ -1,0 +1,20 @@
+steps:
+  - name: build
+    agent: model_builder
+    args:
+      model_name: "glasseye-optimized"
+      device: "cpu"
+  - name: data
+    agent: data_preparer
+    args:
+      source: "HuggingFaceFW/fineweb-edu"
+      subset: "sample-10BT"
+  - name: train
+    agent: trainer
+    args:
+      script_path: "training/3b_fine_web_edu.py"
+      max_steps: 100
+  - name: status
+    agent: monitor
+    args:
+      log_path: "training.log"

@@ -1,0 +1,10 @@
+steps:
+  - name: check_logs
+    agent: monitor
+    args:
+      log_path: "training.log"
+  - name: verify_deployment
+    agent: deployer
+    args:
+      model_path: "artifacts/openmythos_0ai_cpu_dev.pt"
+      mode: "local"

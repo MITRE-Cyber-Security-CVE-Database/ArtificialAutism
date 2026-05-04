@@ -1,0 +1,16 @@
+steps:
+  - name: build_checkpoint
+    agent: model_builder
+    args:
+      model_name: "glasseye-tiny-auto"
+      device: "cpu"
+  - name: prepare_data
+    agent: data_preparer
+    args:
+      source: "HuggingFaceFW/fineweb-edu"
+      subset: "sample-10BT"
+  - name: deploy_ready
+    agent: deployer
+    args:
+      model_path: "{{build_checkpoint.output_path}}"
+      mode: "local"

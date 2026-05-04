@@ -35,8 +35,6 @@ torch.set_num_threads(THREADS)
 
 CANDIDATE_MODULES = [
     "open_mythos.main",
-    "openmythos.main",
-    "main",
 ]
 
 
