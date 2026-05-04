@@ -31,13 +31,20 @@ def main():
         }
     ]
     
-    # If optimization loop requested via CLI
     if "--optimize" in sys.argv:
         loops_to_run.append({
             "name": "Optimization",
             "yaml_path": "pipelines/optimization_loop.yaml",
             "interval": 30
         })
+        
+    if "--security" in sys.argv:
+        loops_to_run.append({
+            "name": "SecurityAudit",
+            "yaml_path": "pipelines/security_loop.yaml",
+            "interval": 60 # Run hourly or daily in prod
+        })
+
     
     print("Mythos Glasseye Loop System Starting...")
     print(f"Active loops: {[l['name'] for l in loops_to_run]}")

@@ -1,0 +1,7 @@
+steps:
+  - name: audit_codebase
+    agent: security_auditor
+    args:
+      target_dir: "."
+      check_dependencies: true
+      run_sast: true

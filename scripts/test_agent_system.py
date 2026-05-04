@@ -13,7 +13,7 @@ def main():
     agents = registry.list_agents()
     print(f"Discovered agents: {list(agents.keys())}")
     
-    expected_agents = ['model_builder', 'data_preparer', 'trainer', 'deployer', 'monitor']
+    expected_agents = ['model_builder', 'data_preparer', 'trainer', 'deployer', 'monitor', 'security_auditor']
     for agent_name in expected_agents:
         if agent_name in agents:
             print(f"Success: {agent_name} agent discovered.")
