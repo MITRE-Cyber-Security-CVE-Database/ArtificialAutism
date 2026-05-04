@@ -1,0 +1,32 @@
+# Training Pipeline
+# Full training workflow: prepare data → train model
+
+steps:
+  - name: prepare_data
+    agent: data_preparer
+    args:
+      source: "HuggingFaceFW/fineweb-edu"
+      subset: "sample-10BT"
+      split: "train"
+  
+  - name: build_model
+    agent: model_builder
+    args:
+      model_name: "glasseye-base"
+      config:
+        size: "tiny"
+      device: "cpu"
+  
+  - name: train
+    agent: trainer
+    args:
+      script_path: "training/3b_fine_web_edu.py"
+      max_steps: 1000
+      batch_size: 4
+      use_ddp: false
+      num_gpus: 1
+
+metadata:
+  description: "Complete training pipeline for Mythos Glasseye"
+  author: "Mythos Glasseye Team"
+  version: "1.0"

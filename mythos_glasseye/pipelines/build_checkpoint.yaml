@@ -1,0 +1,24 @@
+# Build Checkpoint Pipeline
+# Builds a tiny CPU-safe OpenMythos checkpoint
+
+steps:
+  - name: build_checkpoint
+    agent: model_builder
+    args:
+      model_name: "glasseye-tiny"
+      config:
+        size: "tiny"
+      device: "cpu"
+  
+  - name: test_checkpoint
+    agent: model_builder
+    args:
+      model_name: "glasseye-tiny-test"
+      config:
+        size: "tiny"
+      device: "cpu"
+
+metadata:
+  description: "Build and test a tiny CPU checkpoint for Mythos Glasseye"
+  author: "Mythos Glasseye Team"
+  version: "1.0"

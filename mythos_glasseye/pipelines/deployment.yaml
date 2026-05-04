@@ -1,0 +1,21 @@
+# Deployment Pipeline
+# Deploy model inference endpoint (FastAPI + optional Docker)
+
+steps:
+  - name: deploy_fastapi
+    agent: deployer
+    args:
+      model_path: "artifacts/openmythos_0ai_cpu_dev.pt"
+      port: 5000
+      mode: "fastapi"
+  
+  - name: start_monitoring
+    agent: monitor
+    args:
+      log_dir: "artifacts/runs"
+      port: 6006
+
+metadata:
+  description: "Deploy inference endpoint with monitoring"
+  author: "Mythos Glasseye Team"
+  version: "1.0"
